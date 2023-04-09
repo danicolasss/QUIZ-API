@@ -9,6 +9,7 @@ use App\Repository\ThemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use http\Client\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,6 +68,7 @@ class ThemeController extends AbstractController
         return new Response($QuestionJson , Response::HTTP_OK, ['content-type' => 'application/json']);
     }
     #[Route('api/addQuestions/', name: 'app_add_question', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN', message: 'Vous n\'avez pas les droits suffisants pour créer une question')]
     public function getAddQuestion(\Symfony\Component\HttpFoundation\Request $request):Response
     {
         $bodyRequest = $request->getContent();
@@ -76,6 +78,7 @@ class ThemeController extends AbstractController
             $this->insertQuestion($post["intitule"],$post["theme_id"],$post["image"]);
             $this->insertReponses($this->questionRepository->findOneBy(array(),array('id'=>'DESC'),1,0),$post["reponse"]);
         }
+
         return new Response("Insert Réussit" , Response::HTTP_CREATED, ['content-type' => 'application/json']);
     }
 
