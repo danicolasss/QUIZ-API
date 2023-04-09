@@ -26,7 +26,7 @@ class Question
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?theme $theme = null;
+    private ?Theme $theme = null;
 
     #[ORM\ManyToMany(targetEntity: Reponse::class, inversedBy: 'questions')]
     #[Groups(['get_question'])]
