@@ -23,7 +23,7 @@ class ThemeFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker=Factory::create("fr_FR");
-        $themes=["animaux","anime","voiture","alcool"];
+        $themes=["L’Égypte antique","Trouve la personne ","OrthoQuiz ","alcool"];
         $i = 0;
         foreach ($themes as $theme){
             $object=new Theme();

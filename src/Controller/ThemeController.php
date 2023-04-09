@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\DataFixtures\ReponseFixtures;
 use App\Repository\QuestionRepository;
 use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use function PHPUnit\Framework\logicalAnd;
 
 class ThemeController extends AbstractController
 {
